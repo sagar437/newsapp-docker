@@ -1,0 +1,25 @@
+version: "3.1"
+services:
+  app:
+    container_name: app
+    hostname: localhost
+    build: ${PWD}/app
+    volumes:
+      - ${PWD}/app/src/server.py:/opt/server.py
+    environment:
+        - FLASK_APP=/opt/server.py
+    command: flask run --host=0.0.0.0 --port=8000
+    ports:
+       - "8000:8000"
+
+  nginx:
+    container_name: nginx
+    hostname: localhost
+    build: ${PWD}/nginx
+    depends_on:
+            - app
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+
