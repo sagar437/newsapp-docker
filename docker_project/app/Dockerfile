@@ -3,7 +3,7 @@ FROM python:3.7.2-stretch
 WORKDIR /opt/project
 
 # Copy server.py and requirements.txt to the working directory
-COPY src/server.py /opt/project/
+COPY src/* /opt/project/
 COPY src/requirements.txt /opt/project/
 
 #Upgrade pip and install flask and gunicorn
