@@ -1,7 +1,11 @@
 FROM python:3.7.2-stretch
-#RUN apk --update add bash nano
-#ENV STATIC_URL /static
-#ENV STATIC_PATH /var/www/app/static
-ADD src/requirements.txt /var/www/requirements.txt
-RUN pip install -r /var/www/requirements.txt
-EXPOSE 8000
+#Set working directory as /opt/project
+WORKDIR /opt/project
+
+# Copy server.py and requirements.txt to the working directory
+COPY src/server.py /opt/project/
+COPY src/requirements.txt /opt/project/
+
+#Upgrade pip and install flask and gunicorn
+RUN pip3 install --upgrade pip
+RUN pip install -r requirements.txt

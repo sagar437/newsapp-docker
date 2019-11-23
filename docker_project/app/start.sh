@@ -1,6 +1,5 @@
-#!/bin/bash
-app="docker.test"
+app="docker.test1"
 docker build -t ${app} .
-docker run -d -p 5000:80 \
+docker run -d -p 8000:80 \
   --name=${app} \
   -v $PWD:/app ${app}
